@@ -64,7 +64,7 @@ Pokemon.prototype.getIconImageURL = function() {
 
 	var formeLetter = this.data["formeLetter"];
 	if (formeLetter && (number != "493") && (number != "649") && (number != "710") && (number != "711")) { // arceus, genesect don't work right now. Pumpkaboo/Gourgeist shouldn't work ever.
-		imageURL += formeLetter;
+		imageURL += formeLetter.toLowerCase();
 	}
 
 	return imageURL + ".png";
