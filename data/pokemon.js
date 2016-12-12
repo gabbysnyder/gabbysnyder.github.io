@@ -46,7 +46,7 @@ Pokemon.prototype.urlNumber = function () {
 
 	var formeLetter = this.data["formeLetter"];
 	if (formeLetter) {
-		urlNumber += formeLetter;
+		urlNumber += formeLetter.toLowerCase();
 	}
 
 	return urlNumber;
