@@ -13,8 +13,8 @@ var shouldValidateForMetagame = 0;
 
 // These are defined globally for simplicity's sake of replacing the forme regex whenever
 // new formes/updates are released.
-var validPokemonRegex = new RegExp(/(\d{3}|\d{2}|\d{1})([MACRBPDLSGHWFOEIZTU]?)/);
-var validFormeRegex = new RegExp(/[MACRBPDLSGHWFOEIZTU]/);
+var validPokemonRegex = new RegExp(/(\d{3}|\d{2}|\d{1})([MATCRBPDLOHSUKGWFEIZ]?)/);
+var validFormeRegex = new RegExp(/[MATCRBPDLOHSUKGWFEIZ]/, "i");
 
 function fetchPokemon(name) {
 	name = name.toLowerCase();
@@ -39,11 +39,11 @@ function parseCurrentURL() {
 	 	}
 
 	 	var pkmn = parseInt(regexFromUrl[i]);
-	 	if (pkmn > 801) { // searches through Magearna
+	 	if (pkmn > 807) { // searches through Zeraora
 	 		return;
 	 	}
 
-	 	var forme = regexFromUrl[i].match(validFormeRegex);
+	 	var forme = regexFromUrl[i].match(validFormeRegex)[0];
 	 	var name = pokemon_url[pkmn - 1];
 	 	if (forme) {
 	 		var pkmnFormeArray = pokedex.pokemon[fetchPokemon(name)]["otherFormes"];
@@ -51,7 +51,7 @@ function parseCurrentURL() {
 	 		var pkmn;
 	 		for (var formeIdx in pkmnFormeArray) {
 	 			var possiblePokemon = pokedex.pokemon[pkmnFormeArray[formeIdx]];
-	 			if (possiblePokemon != undefined && possiblePokemon["formeLetter"] == forme) {
+	 			if (possiblePokemon != undefined && possiblePokemon["formeLetter"].toLowerCase() === forme) {
 	 				pkmn = possiblePokemon;
 	 				break;
 	 			}
